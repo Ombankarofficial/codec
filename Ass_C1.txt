@@ -1,0 +1,97 @@
+"""The ticket booking system of Cinemax theater has to be implemented using C++ program. 
+There are 10 rows and 7 seats in each row. Doubly circular linked list has to be 
+maintained to keep track of free seats at rows. Assume some random booking to start 
+with. Use array to store pointers (Head pointer) to each row. On demand
+a) The list of available seats is to be displayed
+b) The seats are to be booked
+c) The booking can be cancelled."""
+
+
+#include <iostream>
+using namespace std;
+struct Node{
+	char status;
+	int seatno;
+	struct Node *next;
+	struct Node *prev;
+}node,*head,*end;
+
+struct Node * create(int seat,char status1='A')
+{
+	struct Node *t=new Node();
+	t->seatno=seat;
+	t->status=status1;
+	t->next=NULL;
+	t->prev=NULL;
+	return(t);
+}
+struct Node * addNode(int seat,char status1='A')
+{
+	struct Node *t=create(seat);
+	if(head)
+	{
+		end->next=t;
+		t->prev=end;
+		end=t;
+	}else
+	{
+		head=t;
+		end=t;
+	}
+	return(head);
+}
+void display(struct Node *t1)
+{
+	cout<<"\nCINEMAX THEATRE VIEW\N";
+	int cnt=0;
+	while(t1)
+	{
+		cout<<t1->seatno<<":"<<t1->status<<"\t";
+		cnt++;
+		if(cnt%7==0)
+		cout<<"\n";
+		t1=t1->next;
+	}
+}
+void book(int seat,struct Node *t,char status1='B')
+{ while(t){
+	if(t->seatno==seat)
+	{
+		if(t->status=='B')
+		cout<<"ALREADY BOOKED";
+		t->status=status1;
+		
+		if(status1=='B')
+		{cout<<"TICKET BOOKED"; return; }
+		else
+		if(status1=='A')
+		{
+		cout<<"TICKET CANCELLED";return; }
+		}
+	t=t->next;
+    }
+        cout<<"INVALID DATA";
+    
+		
+    }
+    
+
+int main(int argc,char** argv) {
+	cout<<"WELCOME TO DCLL";
+	int cnt=0;
+	for(int i=1;i<8;i++)
+	{
+	for(int j=1;j<11;j++){
+		head=addNode(cnt+1);
+		cnt++;
+	     }
+	}	
+	display(head);
+	
+	book(10,head);
+	book(5,head);
+	book(5,head,'B');
+	display(head);
+	return 0;
+}
+	

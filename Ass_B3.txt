@@ -1,0 +1,49 @@
+"""Write a Python program to store first year percentage of students in array. Write 
+function for sorting array of floating point numbers in ascending order using quick sort 
+and display top five scores."""
+
+
+def top(arr):
+    n=len(arr)-1
+    for i in range(n,n-5,-1):
+        print("top:",arr[i])
+
+def partition(arr, low, high):
+    pivotVal = arr[high] # arr[low]
+    i = low - 1
+    # compare each element with pivotVal
+    for j in range(low, high): # partition Low and high
+        if arr[j] <= pivotVal:
+            i += 1 #i=0 intially
+            # swapping data at index i with element at j
+            arr[i], arr[j] = arr[j], arr[i]
+            print(arr)
+
+            # Exchange the pivotVal with the greater data item specified by i
+        arr[i + 1], arr[high] = arr[high], arr[i + 1]
+        return i + 1
+
+# Quicksort
+
+def quickSort(arr, low, high):
+    if low < high:
+        pi = partition(arr, low, high)
+        print("Pivot val:",arr[pi])
+        # recursive call left Sublist
+        print("Left:",arr[0:pi])
+        quickSort(arr, low, pi - 1)
+        print("-"*50)
+        # recursive call right Sublist
+        print("Right:",arr[pi:high])
+        quickSort(arr, pi + 1, high)
+        print(arr)
+
+#main proagram
+array = [78.5, 67.2, 22.8, 31.9, 10.5, 39.4, 46.0]
+print("Unsorted array Element")
+print(array)
+n = len(array)
+quickSort(array, 0, n - 1)
+print('Sorted array in Ascending Order:')
+print(array)
+top(array)

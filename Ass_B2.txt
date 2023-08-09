@@ -1,0 +1,84 @@
+"""Write a Python program to store first year percentage of students in array. Write 
+function for sorting array of floating point numbers in ascending order using 
+a) Selection Sort 
+b) Bubble sort and display top five scores"""
+
+
+def selectionSort(arr,fl=False):
+    n=len(arr)
+    for i in range(0, n):
+        print("Pass:",i)
+        print("-"*20)
+        for j in range(i+1,n):
+            if(arr[i]>arr[j]) and (fl==0): #swap asecending
+                arr[i],arr[j]=arr[j],arr[i] #exchange values
+            if(arr[i]<arr[j]) and (fl==1): #swap desecending
+                arr[i],arr[j]=arr[j],arr[i] #exchange values
+            print(arr)
+
+def getlist():
+    list1=[]
+    size = int(input("Enter How many data items to sort:"))
+    # taking array data from the user
+    for i in range(size):
+        str1="Enter the array data "+str(i+1) +" :"
+        data = float(input(str1))
+        list1.append(data)
+        print("Contents of list/array :", list1)
+
+    return(list1)
+def top(arr,cnt=5):
+    t=1
+    for i in range(len(arr)-1,len(arr)-cnt-1,-1):
+        print("Topper:",t,")",arr[i])
+
+        t +=1
+def top1(arr,cnt=5):
+    t=1
+    #assume cnt<= len(arr)-1
+    for i in range(0,cnt):
+        print("Topper:",t,")",arr[i])
+        t +=1
+
+### Main program
+arr=[]
+arr=getlist()
+selectionSort(arr,True)
+top1(arr)
+print ("Sorted array is:")
+print(arr)
+
+#Bubble Sort
+def bubblesort(list1):
+    c1=0
+    for n in range(len(list1)-1, 0, -1):
+        print("Pass:",c1)
+        c1+=1
+        print("value of n:",n)
+        for i in range(n):
+            if list1[i] > list1[i + 1]:
+            # swapping data if the element is less than next element in the array
+                list1[i], list1[i + 1] = list1[i + 1], list1[i]
+                print(list1)
+
+def getlist(list1):
+    size = int(input("Enter How many data items to sort:"))
+    # taking array data from the user
+    for i in range(size):
+        str1="Enter the array data "+str(i+1) +" :"
+        data = int(input(str1))
+        list1.append(data)
+        print("Contents of list/array :", list1)
+def top(arr,cnt=5):
+    t=1
+    for i in range(len(arr)-1,len(arr)-cnt-1,-1):
+        print("Topper:",t,")",arr[i])
+
+        t +=1
+
+#main program
+list1 = []
+getlist(list1)
+bubblesort(list1)
+print("Sorted Array: ")
+top(list1)

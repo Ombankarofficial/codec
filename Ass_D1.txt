@@ -1,0 +1,105 @@
+"""A palindrome is a string of character that‘s the same forward and backward. Typically, 
+punctuation, capitalization, and spaces are ignored. For example, “Poor Dan is in a 
+droop” is a palindrome, as can be seen by examining the characters “poor danisina 
+droop” and observing that they are the same forward and backward. One way to check 
+for a palindrome is to reverse the characters in the string and then compare with them 
+the original-in a palindrome, the sequence will be identical. Write C++ program with 
+functionsa) To print original string followed by reversed string using stack
+b) To check whether given string is palindrome or not"""
+
+
+#include <iostream>
+#include<cstring>
+#include<string>
+using namespace std;
+#define SIZE 20  //preprocessor directives constant
+char stack[SIZE]; //array
+int top=-1;
+int stackFull()
+{
+	if(top==SIZE-1)
+	return(1); //stack Full
+	return(0); //stack not Full
+}
+void push(char data)
+{
+	if(!stackFull())
+	{
+		top++;
+		//strcpy(stack[top],data);
+		stack[top]=data;
+		cout<<"\nInsert at top: "<<top<<" data:"<<data;
+		return;
+	}
+	cout<<"\nStack Full";
+}
+int stackEmpty()
+{
+	if(top==-1)
+	return(1); //stack Empty
+	return(0); //Not Empty
+}
+char pop() //retrieve on element from stack
+{
+	if(!stackEmpty())
+	{
+		char data;
+		data=stack[top];
+		top--;
+		return(data);
+	}
+	return(NULL);//no data
+}
+
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+string transform(string s1)
+{
+	string s2;
+	int i=0;
+	while(s1[i])
+	{
+		if(s1[i]>96)  //Aa 97-65=32 
+		{
+			s1[i]=s1[i]-32;
+		}
+		else{
+			s1[i]=s1[i];
+		}
+		i++;
+		
+	}
+	//s2=s2+"\0";
+	cout<<"\nTransformed String:"<<s1;
+	return(s1);
+}
+int main() {
+	string s2="madam"; //level
+	cout<<"\n Enter String:";
+	cin>>s2;
+	int i=0;
+	s2=transform(s2);
+	while(s2[i])
+	{
+		push(s2[i]);
+		i++;
+	}
+	//display stack elements;
+	string s1="";
+	while(!stackEmpty())
+	{
+		s1=s1+(pop());
+		//cout<<"\nRetireve at Top:"<<top+1<<"  data:"<<pop();
+	}
+	cout<<"\n"<<s1;
+	//std::transform(s1.begin(), s1.end(), s1.begin(), ::toupper);
+	//transform(input.begin(), input.end(), input.begin(), toupper);
+	if((s1)==(s2))
+	{
+		cout<<"\n String is a palindrome"; //97-65
+	}
+	else{
+		cout<<"\n Not a Palindrome";
+	}
+	
+	return 0;
+}
